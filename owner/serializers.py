@@ -9,9 +9,9 @@ class LicenseSerializer(serializers.ModelSerializer):
 
 
 class OwnerSerializer(serializers.ModelSerializer):
-    owner_id = LicenseSerializer(many=True, read_only=True)
+    carlist = LicenseSerializer(many=True, read_only=True)
 
     class Meta:
         # 指定序列化对应的模型
         model = Owner
-        fields = ['name', 'home_number', 'owner_id']
+        fields = ['id', 'name', 'home_number', 'phone_number', 'park_lot', 'park_state', 'create_time', 'update_time', 'carlist']

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <input type="file" id="file">
+    <script>
+        $("#file").change(function(e) {
+            let formData = new FormData();
+            formData.append('car_img', e.target.files[0])
+            formData.append('license', "陕A12345")
+            formData.append('owner', 1)
+            /*
+                $.ajax({
+                    type: "POST",
+                    contentType: false,
+                    processData: false,
+                    url: "http://localhost:8000/api/v0/license/",
+                    data: formData
+                })
+                let ajax = new XMLHttpRequest();
+                ajax.open("POST", "http://localhost:8000/api/v0/license/", false);
+                ajax.send(formData)
+            */
+        })
+        /*
+        *
+        $.post("http://localhost:8000/api/v0/license/", {
+            car_img:
+        })
+        * */
+    </script>
+</body>
+</html>

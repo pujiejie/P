@@ -1,6 +1,6 @@
-from .models import Owner
+from .models import Owner, License
 from rest_framework.viewsets import ModelViewSet
-from .serializers import OwnerSerializer
+from .serializers import OwnerSerializer, LicenseSerializer
 
 
 class OwnerView(ModelViewSet):
@@ -11,3 +11,9 @@ class OwnerView(ModelViewSet):
     serializer_class = OwnerSerializer
 
 
+class LicenseView(ModelViewSet):
+    """
+    用户车辆API
+    """
+    queryset = License.objects.all()
+    serializer_class = LicenseSerializer
