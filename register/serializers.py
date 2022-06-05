@@ -10,6 +10,7 @@ class UsersModelSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=20, required=True)
     password = serializers.CharField(max_length=20, required=True)
     tem = serializers.CharField(max_length=20, required=True)
+    pic = serializers.ImageField()
 
     class Meta:
         model = Users
@@ -25,19 +26,18 @@ class UsersModelSerializer(serializers.Serializer):
             raise serializers.ValidationError("手机号格式错误，只支持11位手机号")
         return tem
 
-    def create(self):
+    def create(self, request):
         _uuid = uuid.uuid1().hex
-
         try:
             user = Users.objects.create(
                 username=self.data.get('username'),
                 password=make_password(self.data.get('password'), _uuid),
                 tem=self.data.get('tem'),
-                salt=_uuid
+                salt=_uuid,
+                pic=request.data.get('pic')
             )
             return UsersModelSerializer(instance=user).data
         except django.db.utils.IntegrityError:
             raise serializers.ValidationError({
                 'username': '账户名已存在'
             })
-

@@ -6,6 +6,7 @@ class Users(models.Model):
     password = models.CharField(max_length=20)
     salt = models.CharField(max_length=100)
     tem = models.CharField(max_length=20)
+    pic = models.ImageField(upload_to='images/', null=True)
 
     def check_password(self):
         print(self.password)
